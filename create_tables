@@ -1,0 +1,111 @@
+REATE DATABASE database_termproj;
+--Separate command
+USE database_termproj;
+
+--Each CREATE TABLE should be done separately
+
+--Create tables
+
+CREATE TABLE Equipment (
+Equipment_ID DECIMAL(15) PRIMARY KEY,
+Equipment_Name VARCHAR(255) NOT NULL,
+Equipment_Desc VARCHAR(255) 
+);
+
+CREATE TABLE Visitor (
+Visitor_ID DECIMAL(15) PRIMARY KEY,
+Visitor_Name VARCHAR(255) NOT NULL,
+Equipment_Desc VARCHAR(255) 
+);
+
+CREATE TABLE Ambulance (
+Ambulance_ID DECIMAL(15) PRIMARY KEY
+);
+
+CREATE TABLE Pharmacy (
+Drug_ID DECIMAL(15) PRIMARY KEY,
+Drug_Name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Insurance (
+Insurance_ID DECIMAL(15) PRIMARY KEY,
+Insurance_Plan_Name VARCHAR(255) NOT NULL,
+Copay DECIMAL(15) NOT NULL
+);
+
+CREATE TABLE Diagnosis (
+Diagnosis_Code DECIMAL(15) PRIMARY KEY,
+Diagnosis_Name VARCHAR(255) NOT NULL,
+Diagnosis_Desc VARCHAR(255) 
+);
+
+CREATE TABLE Building (
+Building_ID DECIMAL(15) PRIMARY KEY,
+Building_Name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Physician (
+Physician_ID DECIMAL(15) PRIMARY KEY,
+Physician_First VARCHAR(255) NOT NULL,
+Physician_Last VARCHAR(255) NOT NULL,
+Physician_Specialty VARCHAR(255) NOT NULL,
+Building_ID DECIMAL(15) NOT NULL,
+FOREIGN KEY (Building_ID) REFERENCES Building
+);
+
+CREATE TABLE Patient (
+Patient_ID DECIMAL(15) PRIMARY KEY,
+Insurance_ID DECIMAL(15),
+Patient_First VARCHAR(255) NOT NULL,
+Patient_Last VARCHAR(255) NOT NULL,
+Patient_Balance DECIMAL(38) NOT NULL,
+Patient_Phone DECIMAL(15),
+Patient_Address VARCHAR(255),
+Patient_City VARCHAR(255),
+Patient_State VARCHAR(255),
+Patient_Zip DECIMAL(15),
+Patient_Com VARCHAR(255),
+FOREIGN KEY (Insurance_ID) REFERENCES Insurance
+);
+
+CREATE TABLE Wait_List (
+Wait_List_ID DECIMAL(15) PRIMARY KEY,
+Physician_ID DECIMAL(15) NOT NULL,
+Patient_ID DECIMAL(15) NOT NULL,
+Wait_Order_Number DECIMAL(15) NOT NULL,
+FOREIGN KEY (Physician_ID) REFERENCES Physician,
+FOREIGN KEY (Patient_ID) REFERENCES Patient
+);
+
+CREATE TABLE Visit (
+Visit_ID DECIMAL(15) PRIMARY KEY,
+Physician_ID DECIMAL(15) NOT NULL,
+Patient_ID DECIMAL(15) NOT NULL,
+Diagnosis_ID DECIMAL(15),
+Scheduled_Date DATE NOT NULL,
+Avail_Stat DECIMAL(15) NOT NULL,
+FOREIGN KEY (Physician_ID) REFERENCES Physician,
+FOREIGN KEY (Patient_ID) REFERENCES Patient,
+FOREIGN KEY (Diagnosis_ID) REFERENCES Diagnosis
+);
+
+--Patient starts with zero balance
+CREATE PROCEDURE ADD_Patient
+@Patient_ID_arg DECIMAL(15),
+@Insurance_ID_arg DECIMAL(15),
+@Patient_First_arg VARCHAR(255),
+@Patient_Last_arg VARCHAR(255),
+@Patient_Balance_arg DECIMAL(38),
+@Patient_Phone_arg DECIMAL(15),
+@Patient_Address_arg VARCHAR(255),
+@Patient_City_arg VARCHAR(255),
+@Patient_State_arg VARCHAR(255),
+@Patient_Zip_arg DECIMAL(15),
+@Patient_Com_arg VARCHAR(255)
+AS 
+BEGIN
+INSERT INTO Patient
+(Patient_ID,Insurance_ID,Patient_First,Patient_Last,Patient_Balance,Patient_Phone,Patient_address,Patient_City,Patient_State,Patient_Zip,Patient_Com)
+VALUES(@Patient_ID_arg,@Insurance_ID_arg,@Patient_First_arg,@Patient_Last_arg,0,@Patient_Phone_arg,@Patient_address_arg,@Patient_City_arg,@Patient_State_arg,@Patient_Zip_arg,@Patient_Com_arg);
+END;
+
