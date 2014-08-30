@@ -1,0 +1,85 @@
+--Note: Each query should be done seperately
+
+--Query 1
+SELECT Physician.Physician_Last, Physician.Physician_First, Building_name
+FROM Physician
+JOIN Building ON Physician.Building_ID = Building.Building_ID
+WHERE Building.Building_ID = 1 OR Building.Building_ID = 2;
+
+--Query 2
+SELECT Patient.Patient_Last, Patient.Patient_First, Insurance_Plan_Name
+FROM Patient
+JOIN Insurance ON Patient.Insurance_ID = Insurance.Insurance_ID
+WHERE Insurance.Insurance_ID < 6;
+
+--Query 3
+UPDATE Wait_List
+SET Wait_List_Nr = 1
+WHERE Patient_ID = 4;
+
+UPDATE Wait_List
+SET Wait_List_Nr = 2
+WHERE Patient_ID = 2;
+
+--Query 4
+--We know that Patient ID 5 only saw Physician ID 4
+--So we just need to find the Physicians without that ID  
+SELECT Physician_Last, Physician_First
+FROM Physician
+WHERE Physician_ID != 4;
+
+--Query 5
+Update Patient
+SET Patient_Balance = 30
+WHERE Patient_ID = 2;
+
+Update Patient
+SET Patient_Com = 'Copayment'
+WHERE Patient_ID = 2;
+--Type SELECT command to view results
+SELECT Patient.Patient_ID, Patient.Patient_Balance, Patient.Patient_Com
+FROM Patient
+WHERE Patient_ID = 2;
+
+--Query 6
+Update Patient
+SET Insurance_ID = NULL
+WHERE Patient_ID = 3;
+
+Update Patient
+SET Patient_Com = 'No Insurance'
+WHERE Patient_ID = 3;
+--Type SELECT command to view results
+SELECT Patient.Patient_ID, Patient.Insurance_ID, Patient.Patient_Com
+FROM Patient
+WHERE Patient_ID = 3;
+
+--Query 7
+SELECT Physician.Physician_Last, Physician.Physician_First, Avail_Stat
+FROM Physician
+JOIN Visit ON Physician.Physician_ID = Visit.Physician_ID
+Where Visit.Avail_Stat = 1;
+
+--Query 8
+SELECT Insurance.Insurance_Plan_Name, Insurance.Copay,
+	COUNT(Patient.Insurance_ID) AS total_members
+FROM Insurance
+JOIN Patient ON Insurance.Insurance_ID = Patient.Insurance_ID
+GROUP BY Insurance.Insurance_Plan_Name, Insurance.Copay
+HAVING COUNT(Patient.Insurance_ID) > 2
+
+--Query 9
+SELECT Physician.Physician_Last, Physician.Physician_First, Patient_ID 
+FROM Physician
+JOIN Visit ON Physician.Physician_ID = Visit.Physician_ID
+WHERE Patient_ID = 1;
+
+SELECT * 
+FROM Patient
+WHERE Patient_ID = 1;
+
+--Query 10
+Select Physician.Physician_First, Physician.Physician_Last, Visit.Patient_ID
+FROM Physician
+JOIN Visit ON Physician.Physician_ID = Visit.Physician_ID
+ORDER BY Patient_ID;
