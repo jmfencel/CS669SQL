@@ -1,0 +1,106 @@
+--Each INSERT should be done separately
+
+--Equipment INSERT
+INSERT INTO Equipment VALUES(1,'Safety Needle','Used for injections');
+INSERT INTO Equipment VALUES(2,'Gause Pads','To absob blood');
+INSERT INTO Equipment VALUES(3,'Needle Holder','To hold needles');
+INSERT INTO Equipment VALUES(4,'Skin hook','Used to hold skin in place');
+
+--Visitor INSERT
+INSERT INTO Visitor VALUES(1,'Beverly','Waters');
+INSERT INTO Visitor VALUES(2,'Minnie','Burns');
+INSERT INTO Visitor VALUES(3,'Peter','Sparks');
+INSERT INTO Visitor VALUES(4,'Annie','Walker');
+
+--Ambulance INSERT
+INSERT INTO Ambulance VALUES(1);
+INSERT INTO Ambulance VALUES(2);
+INSERT INTO Ambulance VALUES(3);
+INSERT INTO Ambulance VALUES(4);
+
+--Pharmacy INSERT
+INSERT INTO Pharmacy VALUES(1,'Paxil');
+INSERT INTO Pharmacy VALUES(2,'Xanax');
+INSERT INTO Pharmacy VALUES(3,'Lipitor');
+INSERT INTO Pharmacy VALUES(4,'Zoloft');
+
+--Insurance INSERT
+INSERT INTO Insurance VALUES(1,'Unitedhealth',25);
+INSERT INTO Insurance VALUES(2,'Wellpoint',30);
+INSERT INTO Insurance VALUES(3,'Humana',25);
+INSERT INTO Insurance VALUES(4,'Aetna',40);
+INSERT INTO Insurance VALUES(5,'Cigna',35);
+
+--Diagnosis INSERT
+INSERT INTO Diagnosis VALUES(1,'Anxiety','Chronic stress');
+INSERT INTO Diagnosis VALUES(2,'Bipolar','Manic-depressive illness');
+INSERT INTO Diagnosis VALUES(3,'ADHD','Attention-deficit Hyperactivity disorder');
+--In an actual hospital database there would be much more
+--but for the sake of this project, I only included three.
+
+--Building INSERT
+INSERT INTO Building VALUES(1,'Agnes');
+INSERT INTO Building VALUES(2,'Palladius');
+INSERT INTO Building VALUES(3,'Escoffery');
+INSERT INTO Building VALUES(4,'Hudson');
+INSERT INTO Building VALUES(5,'Fisher');
+INSERT INTO Building VALUES(6,'Clayton');
+
+--Physician INSERT
+INSERT INTO Physician VALUES(1,'Ramon','Stevens','Internal Medicine',1);
+INSERT INTO Physician VALUES(2,'Sherry','Fields','Cardiology',2);
+INSERT INTO Physician VALUES(3,'Eula','Price','Neonatology',1);
+INSERT INTO Physician VALUES(4,'Dustin','Yates','Psychiatry',2);
+INSERT INTO Physician VALUES(5,'Jordan','Schultz','Neurology',3);
+INSERT INTO Physician VALUES(6,'Emma','Estrada','Radiology',5);
+INSERT INTO Physician VALUES(7,'Alex','Flores','Nuclear Medicine',4);
+INSERT INTO Physician VALUES(8,'Gilberto','Cooper','Neonatology',1);
+INSERT INTO Physician VALUES(9,'Eunice','Rodgers','Cardiology',2);
+INSERT INTO Physician VALUES(10,'Byron','Bell','Cardiology',2);
+INSERT INTO Physician VALUES(11,'Doreen','Adams','Internal Medicine',1);
+INSERT INTO Physician VALUES(12,'Austin','Foster','Psychiatry',2);
+INSERT INTO Physician VALUES(13,'Terrell','Haynes','Neurology',3);
+INSERT INTO Physician VALUES(14,'Katie','Williams','Nuclear Medicine',4);
+INSERT INTO Physician VALUES(15,'Jesus','Gilber','Neonatology',1);
+
+--Patient INSERT
+INSERT INTO Patient VALUES(1,2,'Gladys','Love',0,8335051392,'800 Boylston Street','Boston','MA',02116,'No Balance Due');
+INSERT INTO Patient VALUES(2,2,'Wilbur','Murphy',0,8227098402,'100 Huntington Ave','Boston','MA',02210,'No Balance Due');
+INSERT INTO Patient VALUES(3,3,'Dexter','Dean',0,8559260936,'200 Claredon St','Boston','MA',02206,'No Balance Due');
+INSERT INTO Patient VALUES(4,4,'Elsie','Fox',0,8993362508,'100 Summer Street','Boston','MA',02206,'No Balance Due');
+INSERT INTO Patient VALUES(5,1,'Antoinette','Peters',0,8991425443,'One Lincoln Street','Boston','MA',02111,'No Balance Due');
+INSERT INTO Patient VALUES(6,1,'Larry','Santiago',0,8554219332,'380 Russel Street','Boston','MA',01035,'No Balance Due');
+INSERT INTO Patient VALUES(7,5,'Irving','Ramirez',0,8555834205,'200 Newport Ave','Boston','MA',02171,'No Balance Due');
+INSERT INTO Patient VALUES(8,3,'Sherman','Mendez',0,8436387174,'1776 Heritage Drive','Boston','MA',02171,'No Balance Due');
+
+--Wait_List INSERT
+INSERT INTO Wait_List VALUES(1,1,7,1);
+INSERT INTO Wait_List VALUES(2,1,8,2);
+INSERT INTO Wait_List VALUES(3,1,6,3);
+INSERT INTO Wait_List VALUES(4,1,1,4);
+INSERT INTO Wait_List VALUES(5,2,3,1);
+INSERT INTO Wait_List VALUES(6,2,6,2);
+INSERT INTO Wait_List VALUES(7,2,5,3);
+INSERT INTO Wait_List VALUES(8,3,2,1);
+INSERT INTO Wait_List VALUES(9,3,4,2);
+
+--Visit INSERT
+--Dates are based off of an August 16 work date
+INSERT INTO Visit (Visit_ID, Physician_ID, Patient_ID, Scheduled_Date, Avail_Stat)
+VALUES(1,1,2,CAST('18-AUG-2014' AS DATE),1);
+INSERT INTO Visit (Visit_ID, Physician_ID, Patient_ID, Scheduled_Date, Avail_Stat)
+VALUES(2,1,4,CAST('18-AUG-2014' AS DATE),1);
+INSERT INTO Visit (Visit_ID, Physician_ID, Patient_ID, Scheduled_Date, Avail_Stat)
+VALUES(3,1,3,CAST('18-AUG-2014' AS DATE),1);
+INSERT INTO Visit (Visit_ID, Physician_ID, Patient_ID, Scheduled_Date, Avail_Stat)
+VALUES(4,1,1,CAST('18-AUG-2014' AS DATE),1);
+INSERT INTO Visit (Visit_ID, Physician_ID, Patient_ID, Scheduled_Date, Avail_Stat)
+VALUES(5,2,1,CAST('20-AUG-2014' AS DATE),0);
+INSERT INTO Visit (Visit_ID, Physician_ID, Patient_ID, Diagnosis_ID, Scheduled_Date, Avail_Stat)
+VALUES(6,4,1,1,CAST('19-AUG-2014' AS DATE),1);
+INSERT INTO Visit (Visit_ID, Physician_ID, Patient_ID, Scheduled_Date, Avail_Stat)
+VALUES(7,3,1,CAST('16-AUG-2014' AS DATE),0);
+INSERT INTO Visit (Visit_ID, Physician_ID, Patient_ID, Diagnosis_ID, Scheduled_Date, Avail_Stat)
+VALUES(8,4,5,2,CAST('19-AUG-2014' AS DATE),1);
+INSERT INTO Visit (Visit_ID, Physician_ID, Patient_ID, Diagnosis_ID, Scheduled_Date, Avail_Stat)
+VALUES(9,4,6,3,CAST('19-AUG-2014' AS DATE),1);
